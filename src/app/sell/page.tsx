@@ -1,0 +1,355 @@
+"use client";
+
+import { useState } from "react";
+import { Upload, ChevronRight, ChevronLeft } from "lucide-react";
+
+const steps = ["Details", "Specs", "Photos", "Review"];
+
+export default function SellPage() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+    price: "",
+    year: "",
+    make: "",
+    model: "",
+    condition: "",
+    seats: "",
+    topSpeed: "",
+    range: "",
+    powerType: "",
+    location: "",
+    features: "",
+  });
+
+  const update = (field: string, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const next = () => setCurrentStep((s) => Math.min(s + 1, steps.length - 1));
+  const back = () => setCurrentStep((s) => Math.max(s - 1, 0));
+
+  return (
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h1 className="text-2xl font-bold text-sage-800 mb-1">Sell Your Cart</h1>
+      <p className="text-sage-400 text-sm mb-8">
+        Create a listing to reach thousands of buyers in your area.
+      </p>
+
+      {/* Step indicator */}
+      <div className="flex items-center gap-2 mb-8">
+        {steps.map((step, i) => (
+          <div key={step} className="flex items-center gap-2">
+            <div
+              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
+                i <= currentStep
+                  ? "bg-sage-700 text-white"
+                  : "bg-sage-100 text-sage-400"
+              }`}
+            >
+              {i + 1}
+            </div>
+            <span
+              className={`text-sm hidden sm:inline ${
+                i <= currentStep ? "text-sage-700 font-medium" : "text-sage-400"
+              }`}
+            >
+              {step}
+            </span>
+            {i < steps.length - 1 && (
+              <div className="w-8 h-px bg-sage-200 mx-1" />
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-white rounded-xl border border-sage-100 p-6">
+        {/* Step 1: Details */}
+        {currentStep === 0 && (
+          <div className="space-y-4">
+            <h2 className="text-lg font-semibold text-sage-700 mb-4">
+              Cart Details
+            </h2>
+            <div>
+              <label className="block text-sm font-medium text-sage-600 mb-1">
+                Listing Title
+              </label>
+              <input
+                type="text"
+                value={form.title}
+                onChange={(e) => update("title", e.target.value)}
+                placeholder="e.g., 2024 Club Car Onward - Custom Build"
+                className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-sage-600 mb-1">
+                Description
+              </label>
+              <textarea
+                value={form.description}
+                onChange={(e) => update("description", e.target.value)}
+                rows={4}
+                placeholder="Describe your cart, including any modifications, recent maintenance, etc."
+                className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300 resize-none"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-sage-600 mb-1">
+                  Price ($)
+                </label>
+                <input
+                  type="number"
+                  value={form.price}
+                  onChange={(e) => update("price", e.target.value)}
+                  placeholder="12000"
+                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-sage-600 mb-1">
+                  Location
+                </label>
+                <input
+                  type="text"
+                  value={form.location}
+                  onChange={(e) => update("location", e.target.value)}
+                  placeholder="The Villages, FL"
+                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Step 2: Specs */}
+        {currentStep === 1 && (
+          <div className="space-y-4">
+            <h2 className="text-lg font-semibold text-sage-700 mb-4">
+              Specifications
+            </h2>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-sage-600 mb-1">
+                  Year
+                </label>
+                <input
+                  type="number"
+                  value={form.year}
+                  onChange={(e) => update("year", e.target.value)}
+                  placeholder="2024"
+                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-sage-600 mb-1">
+                  Make
+                </label>
+                <select
+                  value={form.make}
+                  onChange={(e) => update("make", e.target.value)}
+                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                >
+                  <option value="">Select make</option>
+                  <option value="Club Car">Club Car</option>
+                  <option value="EZGO">EZGO</option>
+                  <option value="Yamaha">Yamaha</option>
+                  <option value="Icon">Icon</option>
+                  <option value="Evolution">Evolution</option>
+                  <option value="Bintelli">Bintelli</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-sage-600 mb-1">
+                  Model
+                </label>
+                <input
+                  type="text"
+                  value={form.model}
+                  onChange={(e) => update("model", e.target.value)}
+                  placeholder="Onward"
+                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-sage-600 mb-1">
+                  Condition
+                </label>
+                <select
+                  value={form.condition}
+                  onChange={(e) => update("condition", e.target.value)}
+                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                >
+                  <option value="">Select condition</option>
+                  <option value="new">New</option>
+                  <option value="like-new">Like New</option>
+                  <option value="good">Good</option>
+                  <option value="fair">Fair</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-sage-600 mb-1">
+                  Seats
+                </label>
+                <select
+                  value={form.seats}
+                  onChange={(e) => update("seats", e.target.value)}
+                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                >
+                  <option value="">Select</option>
+                  <option value="2">2</option>
+                  <option value="4">4</option>
+                  <option value="6">6</option>
+                  <option value="8">8</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-sage-600 mb-1">
+                  Power Type
+                </label>
+                <select
+                  value={form.powerType}
+                  onChange={(e) => update("powerType", e.target.value)}
+                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                >
+                  <option value="">Select</option>
+                  <option value="electric">Electric</option>
+                  <option value="gas">Gas</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-sage-600 mb-1">
+                  Top Speed (mph)
+                </label>
+                <input
+                  type="number"
+                  value={form.topSpeed}
+                  onChange={(e) => update("topSpeed", e.target.value)}
+                  placeholder="25"
+                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-sage-600 mb-1">
+                  Range
+                </label>
+                <input
+                  type="text"
+                  value={form.range}
+                  onChange={(e) => update("range", e.target.value)}
+                  placeholder="40 miles"
+                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-sage-600 mb-1">
+                Features (comma separated)
+              </label>
+              <input
+                type="text"
+                value={form.features}
+                onChange={(e) => update("features", e.target.value)}
+                placeholder="Lift Kit, LED Lights, Bluetooth Speakers"
+                className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Step 3: Photos */}
+        {currentStep === 2 && (
+          <div>
+            <h2 className="text-lg font-semibold text-sage-700 mb-4">Photos</h2>
+            <div className="border-2 border-dashed border-sage-200 rounded-xl p-12 text-center">
+              <Upload className="mx-auto text-sage-300 mb-3" size={32} />
+              <p className="text-sage-500 text-sm font-medium mb-1">
+                Drag & drop photos here
+              </p>
+              <p className="text-sage-400 text-xs mb-4">
+                or click to browse (max 10 photos, 5MB each)
+              </p>
+              <button className="bg-sage-100 text-sage-600 text-sm font-medium px-4 py-2 rounded-lg hover:bg-sage-200 transition-colors">
+                Choose Files
+              </button>
+            </div>
+            <p className="text-sage-400 text-xs mt-3">
+              Photo upload will be available once the backend is connected.
+            </p>
+          </div>
+        )}
+
+        {/* Step 4: Review */}
+        {currentStep === 3 && (
+          <div>
+            <h2 className="text-lg font-semibold text-sage-700 mb-4">
+              Review Your Listing
+            </h2>
+            <div className="space-y-3">
+              {[
+                ["Title", form.title],
+                ["Price", form.price ? `$${Number(form.price).toLocaleString()}` : ""],
+                ["Year", form.year],
+                ["Make / Model", `${form.make} ${form.model}`.trim()],
+                ["Condition", form.condition],
+                ["Seats", form.seats],
+                ["Power", form.powerType],
+                ["Top Speed", form.topSpeed ? `${form.topSpeed} mph` : ""],
+                ["Range", form.range],
+                ["Location", form.location],
+                ["Features", form.features],
+              ].map(
+                ([label, value]) =>
+                  value && (
+                    <div
+                      key={label}
+                      className="flex justify-between py-2 border-b border-sage-50"
+                    >
+                      <span className="text-sage-500 text-sm">{label}</span>
+                      <span className="text-sage-800 text-sm font-medium">
+                        {value}
+                      </span>
+                    </div>
+                  )
+              )}
+            </div>
+            <p className="text-sage-400 text-xs mt-6">
+              Listing submission will be available once the backend is connected.
+              Your data is ready to be sent to the API.
+            </p>
+            <button
+              className="mt-4 w-full bg-sage-700 text-white font-medium py-3 rounded-lg hover:bg-sage-800 transition-colors disabled:opacity-50"
+              disabled
+            >
+              Publish Listing (Backend Required)
+            </button>
+          </div>
+        )}
+
+        {/* Navigation */}
+        <div className="flex justify-between mt-6 pt-4 border-t border-sage-100">
+          <button
+            onClick={back}
+            disabled={currentStep === 0}
+            className="flex items-center gap-1 text-sage-500 hover:text-sage-700 text-sm font-medium disabled:opacity-0"
+          >
+            <ChevronLeft size={16} />
+            Back
+          </button>
+          {currentStep < steps.length - 1 && (
+            <button
+              onClick={next}
+              className="flex items-center gap-1 bg-sage-700 text-white text-sm font-medium px-5 py-2 rounded-lg hover:bg-sage-800 transition-colors"
+            >
+              Next
+              <ChevronRight size={16} />
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
