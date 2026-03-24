@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Upload, ChevronRight, ChevronLeft, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
@@ -33,6 +33,31 @@ export default function SellPage() {
   const [uploading, setUploading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) return;
+      setUserId(user.id);
+      // Pre-fill seller info from profile
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("name, email, phone")
+        .eq("id", user.id)
+        .single();
+      if (profile) {
+        setForm((prev) => ({
+          ...prev,
+          sellerName: profile.name ?? prev.sellerName,
+          sellerEmail: profile.email ?? user.email ?? prev.sellerEmail,
+          sellerPhone: profile.phone ?? prev.sellerPhone,
+        }));
+      } else {
+        setForm((prev) => ({ ...prev, sellerEmail: user.email ?? prev.sellerEmail }));
+      }
+    });
+  }, []);
 
   const update = (field: string, value: string) =>
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -93,6 +118,7 @@ export default function SellPage() {
         sellerName: form.sellerName,
         sellerEmail: form.sellerEmail,
         sellerPhone: form.sellerPhone,
+        userId,
       }),
     });
 

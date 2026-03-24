@@ -86,6 +86,7 @@ export async function POST(req: NextRequest) {
       seller_name: body.sellerName,
       seller_email: body.sellerEmail,
       seller_phone: body.sellerPhone ?? "",
+      seller_id: body.userId ?? null,
       status: "active",
     })
     .select()

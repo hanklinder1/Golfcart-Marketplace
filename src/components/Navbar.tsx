@@ -1,12 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X, User, ShoppingCart } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Menu, X, User, ShoppingCart, LogOut } from "lucide-react";
 import { useDemo } from "@/hooks/useDemo";
+import { createClient } from "@/lib/supabase/client";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 export default function Navbar() {
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
   const { isDemo, toggleDemo } = useDemo();
 
   const prefix = isDemo ? "/demo" : "";
@@ -17,6 +22,24 @@ export default function Navbar() {
     { href: `${prefix}/dealers`, label: "Dealers" },
     { href: "/about", label: "About" },
   ];
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => setUser(user));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  async function handleSignOut() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    setUser(null);
+    router.push("/");
+    router.refresh();
+  }
+
+  const displayName = user?.user_metadata?.name ?? user?.email?.split("@")[0] ?? "Account";
 
   return (
     <nav className="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
@@ -56,13 +79,35 @@ export default function Navbar() {
             >
               {isDemo ? "Exit Demo" : "Try Demo"}
             </button>
-            <Link
-              href="/login"
-              className="flex items-center gap-1.5 text-sm font-semibold text-white bg-teal-600 hover:bg-teal-700 px-4 py-2 rounded-full transition-colors"
-            >
-              <User size={15} />
-              Sign In
-            </Link>
+
+            {user ? (
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/profile"
+                  className="flex items-center gap-1.5 text-sm font-semibold text-gray-700 hover:text-teal-600 transition-colors"
+                >
+                  <div className="w-7 h-7 bg-teal-100 rounded-full flex items-center justify-center">
+                    <User size={13} className="text-teal-700" />
+                  </div>
+                  {displayName}
+                </Link>
+                <button
+                  onClick={handleSignOut}
+                  className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-700 transition-colors"
+                >
+                  <LogOut size={13} />
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="flex items-center gap-1.5 text-sm font-semibold text-white bg-teal-600 hover:bg-teal-700 px-4 py-2 rounded-full transition-colors"
+              >
+                <User size={15} />
+                Sign In
+              </Link>
+            )}
           </div>
 
           {/* Mobile toggle */}
@@ -90,25 +135,38 @@ export default function Navbar() {
           ))}
           <div className="flex items-center gap-3 pt-3">
             <button
-              onClick={() => {
-                toggleDemo();
-                setMobileOpen(false);
-              }}
+              onClick={() => { toggleDemo(); setMobileOpen(false); }}
               className={`text-xs font-semibold px-3 py-1.5 rounded-full ${
-                isDemo
-                  ? "bg-teal-100 text-teal-700"
-                  : "bg-gray-100 text-gray-600"
+                isDemo ? "bg-teal-100 text-teal-700" : "bg-gray-100 text-gray-600"
               }`}
             >
               {isDemo ? "Exit Demo" : "Try Demo"}
             </button>
-            <Link
-              href="/login"
-              className="text-white bg-teal-600 hover:bg-teal-700 text-sm font-semibold px-4 py-1.5 rounded-full"
-              onClick={() => setMobileOpen(false)}
-            >
-              Sign In
-            </Link>
+            {user ? (
+              <>
+                <Link
+                  href="/profile"
+                  className="text-gray-700 text-sm font-semibold"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {displayName}
+                </Link>
+                <button
+                  onClick={() => { handleSignOut(); setMobileOpen(false); }}
+                  className="text-gray-400 text-sm"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <Link
+                href="/login"
+                className="text-white bg-teal-600 hover:bg-teal-700 text-sm font-semibold px-4 py-1.5 rounded-full"
+                onClick={() => setMobileOpen(false)}
+              >
+                Sign In
+              </Link>
+            )}
           </div>
         </div>
       )}

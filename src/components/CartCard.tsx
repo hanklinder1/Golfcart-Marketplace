@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { GolfCart } from "@/lib/types";
-import { MapPin, Zap, Fuel, Users, Heart, Calendar, Gauge } from "lucide-react";
+import { MapPin, Zap, Fuel, Users, Calendar, Gauge } from "lucide-react";
+import FavoriteButton from "@/components/FavoriteButton";
 
 interface CartCardProps {
   cart: GolfCart;
@@ -52,9 +53,7 @@ export default function CartCard({ cart, linkPrefix = "/marketplace" }: CartCard
           </span>
         </div>
         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-          <div className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white shadow-md hover:scale-110 transition-transform">
-            <Heart size={16} className="text-gray-500 hover:text-red-500 transition-colors" />
-          </div>
+          <FavoriteButton listingId={cart.id} />
         </div>
         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/30 to-transparent" />
         <div className="absolute bottom-3 left-3">
