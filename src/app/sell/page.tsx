@@ -32,8 +32,8 @@ export default function SellPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-2xl font-bold text-sage-800 mb-1">Sell Your Cart</h1>
-      <p className="text-sage-400 text-sm mb-8">
+      <h1 className="text-2xl font-bold text-teal-800 mb-1">Sell Your Cart</h1>
+      <p className="text-teal-400 text-sm mb-8">
         Create a listing to reach thousands of buyers in your area.
       </p>
 
@@ -44,35 +44,35 @@ export default function SellPage() {
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
                 i <= currentStep
-                  ? "bg-sage-700 text-white"
-                  : "bg-sage-100 text-sage-400"
+                  ? "bg-teal-700 text-white"
+                  : "bg-teal-100 text-teal-400"
               }`}
             >
               {i + 1}
             </div>
             <span
               className={`text-sm hidden sm:inline ${
-                i <= currentStep ? "text-sage-700 font-medium" : "text-sage-400"
+                i <= currentStep ? "text-teal-700 font-medium" : "text-teal-400"
               }`}
             >
               {step}
             </span>
             {i < steps.length - 1 && (
-              <div className="w-8 h-px bg-sage-200 mx-1" />
+              <div className="w-8 h-px bg-teal-200 mx-1" />
             )}
           </div>
         ))}
       </div>
 
-      <div className="bg-white rounded-xl border border-sage-100 p-6">
+      <div className="bg-white rounded-xl border border-teal-100 p-6">
         {/* Step 1: Details */}
         {currentStep === 0 && (
           <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-sage-700 mb-4">
+            <h2 className="text-lg font-semibold text-teal-700 mb-4">
               Cart Details
             </h2>
             <div>
-              <label className="block text-sm font-medium text-sage-600 mb-1">
+              <label className="block text-sm font-medium text-teal-600 mb-1">
                 Listing Title
               </label>
               <input
@@ -80,11 +80,11 @@ export default function SellPage() {
                 value={form.title}
                 onChange={(e) => update("title", e.target.value)}
                 placeholder="e.g., 2024 Club Car Onward - Custom Build"
-                className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 placeholder:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-sage-600 mb-1">
+              <label className="block text-sm font-medium text-teal-600 mb-1">
                 Description
               </label>
               <textarea
@@ -92,12 +92,12 @@ export default function SellPage() {
                 onChange={(e) => update("description", e.target.value)}
                 rows={4}
                 placeholder="Describe your cart, including any modifications, recent maintenance, etc."
-                className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300 resize-none"
+                className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 placeholder:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300 resize-none"
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-sage-600 mb-1">
+                <label className="block text-sm font-medium text-teal-600 mb-1">
                   Price ($)
                 </label>
                 <input
@@ -105,11 +105,11 @@ export default function SellPage() {
                   value={form.price}
                   onChange={(e) => update("price", e.target.value)}
                   placeholder="12000"
-                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                  className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 placeholder:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-sage-600 mb-1">
+                <label className="block text-sm font-medium text-teal-600 mb-1">
                   Location
                 </label>
                 <input
@@ -117,7 +117,7 @@ export default function SellPage() {
                   value={form.location}
                   onChange={(e) => update("location", e.target.value)}
                   placeholder="The Villages, FL"
-                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                  className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 placeholder:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
                 />
               </div>
             </div>
@@ -127,12 +127,12 @@ export default function SellPage() {
         {/* Step 2: Specs */}
         {currentStep === 1 && (
           <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-sage-700 mb-4">
+            <h2 className="text-lg font-semibold text-teal-700 mb-4">
               Specifications
             </h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-sage-600 mb-1">
+                <label className="block text-sm font-medium text-teal-600 mb-1">
                   Year
                 </label>
                 <input
@@ -140,17 +140,17 @@ export default function SellPage() {
                   value={form.year}
                   onChange={(e) => update("year", e.target.value)}
                   placeholder="2024"
-                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                  className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 placeholder:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-sage-600 mb-1">
+                <label className="block text-sm font-medium text-teal-600 mb-1">
                   Make
                 </label>
                 <select
                   value={form.make}
                   onChange={(e) => update("make", e.target.value)}
-                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                  className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
                 >
                   <option value="">Select make</option>
                   <option value="Club Car">Club Car</option>
@@ -163,7 +163,7 @@ export default function SellPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-sage-600 mb-1">
+                <label className="block text-sm font-medium text-teal-600 mb-1">
                   Model
                 </label>
                 <input
@@ -171,17 +171,17 @@ export default function SellPage() {
                   value={form.model}
                   onChange={(e) => update("model", e.target.value)}
                   placeholder="Onward"
-                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                  className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 placeholder:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-sage-600 mb-1">
+                <label className="block text-sm font-medium text-teal-600 mb-1">
                   Condition
                 </label>
                 <select
                   value={form.condition}
                   onChange={(e) => update("condition", e.target.value)}
-                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                  className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
                 >
                   <option value="">Select condition</option>
                   <option value="new">New</option>
@@ -191,13 +191,13 @@ export default function SellPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-sage-600 mb-1">
+                <label className="block text-sm font-medium text-teal-600 mb-1">
                   Seats
                 </label>
                 <select
                   value={form.seats}
                   onChange={(e) => update("seats", e.target.value)}
-                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                  className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
                 >
                   <option value="">Select</option>
                   <option value="2">2</option>
@@ -207,13 +207,13 @@ export default function SellPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-sage-600 mb-1">
+                <label className="block text-sm font-medium text-teal-600 mb-1">
                   Power Type
                 </label>
                 <select
                   value={form.powerType}
                   onChange={(e) => update("powerType", e.target.value)}
-                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                  className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
                 >
                   <option value="">Select</option>
                   <option value="electric">Electric</option>
@@ -221,7 +221,7 @@ export default function SellPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-sage-600 mb-1">
+                <label className="block text-sm font-medium text-teal-600 mb-1">
                   Top Speed (mph)
                 </label>
                 <input
@@ -229,11 +229,11 @@ export default function SellPage() {
                   value={form.topSpeed}
                   onChange={(e) => update("topSpeed", e.target.value)}
                   placeholder="25"
-                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                  className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 placeholder:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-sage-600 mb-1">
+                <label className="block text-sm font-medium text-teal-600 mb-1">
                   Range
                 </label>
                 <input
@@ -241,12 +241,12 @@ export default function SellPage() {
                   value={form.range}
                   onChange={(e) => update("range", e.target.value)}
                   placeholder="40 miles"
-                  className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                  className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 placeholder:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-sage-600 mb-1">
+              <label className="block text-sm font-medium text-teal-600 mb-1">
                 Features (comma separated)
               </label>
               <input
@@ -254,7 +254,7 @@ export default function SellPage() {
                 value={form.features}
                 onChange={(e) => update("features", e.target.value)}
                 placeholder="Lift Kit, LED Lights, Bluetooth Speakers"
-                className="w-full border border-sage-200 rounded-lg px-3 py-2.5 text-sm text-sage-800 placeholder:text-sage-300 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-300"
+                className="w-full border border-teal-200 rounded-lg px-3 py-2.5 text-sm text-teal-800 placeholder:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300"
               />
             </div>
           </div>
@@ -263,20 +263,20 @@ export default function SellPage() {
         {/* Step 3: Photos */}
         {currentStep === 2 && (
           <div>
-            <h2 className="text-lg font-semibold text-sage-700 mb-4">Photos</h2>
-            <div className="border-2 border-dashed border-sage-200 rounded-xl p-12 text-center">
-              <Upload className="mx-auto text-sage-300 mb-3" size={32} />
-              <p className="text-sage-500 text-sm font-medium mb-1">
+            <h2 className="text-lg font-semibold text-teal-700 mb-4">Photos</h2>
+            <div className="border-2 border-dashed border-teal-200 rounded-xl p-12 text-center">
+              <Upload className="mx-auto text-teal-300 mb-3" size={32} />
+              <p className="text-teal-500 text-sm font-medium mb-1">
                 Drag & drop photos here
               </p>
-              <p className="text-sage-400 text-xs mb-4">
+              <p className="text-teal-400 text-xs mb-4">
                 or click to browse (max 10 photos, 5MB each)
               </p>
-              <button className="bg-sage-100 text-sage-600 text-sm font-medium px-4 py-2 rounded-lg hover:bg-sage-200 transition-colors">
+              <button className="bg-teal-100 text-teal-600 text-sm font-medium px-4 py-2 rounded-xl hover:bg-teal-200 transition-colors">
                 Choose Files
               </button>
             </div>
-            <p className="text-sage-400 text-xs mt-3">
+            <p className="text-teal-400 text-xs mt-3">
               Photo upload will be available once the backend is connected.
             </p>
           </div>
@@ -285,7 +285,7 @@ export default function SellPage() {
         {/* Step 4: Review */}
         {currentStep === 3 && (
           <div>
-            <h2 className="text-lg font-semibold text-sage-700 mb-4">
+            <h2 className="text-lg font-semibold text-teal-700 mb-4">
               Review Your Listing
             </h2>
             <div className="space-y-3">
@@ -306,22 +306,22 @@ export default function SellPage() {
                   value && (
                     <div
                       key={label}
-                      className="flex justify-between py-2 border-b border-sage-50"
+                      className="flex justify-between py-2 border-b border-teal-50"
                     >
-                      <span className="text-sage-500 text-sm">{label}</span>
-                      <span className="text-sage-800 text-sm font-medium">
+                      <span className="text-teal-500 text-sm">{label}</span>
+                      <span className="text-teal-800 text-sm font-medium">
                         {value}
                       </span>
                     </div>
                   )
               )}
             </div>
-            <p className="text-sage-400 text-xs mt-6">
+            <p className="text-teal-400 text-xs mt-6">
               Listing submission will be available once the backend is connected.
               Your data is ready to be sent to the API.
             </p>
             <button
-              className="mt-4 w-full bg-sage-700 text-white font-medium py-3 rounded-lg hover:bg-sage-800 transition-colors disabled:opacity-50"
+              className="mt-4 w-full bg-teal-700 text-white font-medium py-3 rounded-xl hover:bg-teal-800 transition-colors disabled:opacity-50"
               disabled
             >
               Publish Listing (Backend Required)
@@ -330,11 +330,11 @@ export default function SellPage() {
         )}
 
         {/* Navigation */}
-        <div className="flex justify-between mt-6 pt-4 border-t border-sage-100">
+        <div className="flex justify-between mt-6 pt-4 border-t border-teal-100">
           <button
             onClick={back}
             disabled={currentStep === 0}
-            className="flex items-center gap-1 text-sage-500 hover:text-sage-700 text-sm font-medium disabled:opacity-0"
+            className="flex items-center gap-1 text-teal-500 hover:text-teal-700 text-sm font-medium disabled:opacity-0"
           >
             <ChevronLeft size={16} />
             Back
@@ -342,7 +342,7 @@ export default function SellPage() {
           {currentStep < steps.length - 1 && (
             <button
               onClick={next}
-              className="flex items-center gap-1 bg-sage-700 text-white text-sm font-medium px-5 py-2 rounded-lg hover:bg-sage-800 transition-colors"
+              className="flex items-center gap-1 bg-teal-700 text-white text-sm font-medium px-5 py-2 rounded-xl hover:bg-teal-800 transition-colors"
             >
               Next
               <ChevronRight size={16} />

@@ -16,7 +16,7 @@ export const demoCarts: GolfCart[] = [
     range: "40 miles",
     powerType: "electric",
     images: [
-      "/images/carts/golf-cart-sunset.jpg",
+      "/images/carts/golfcart-orange.webp",
     ],
     features: [
       "Lift Kit",
@@ -45,7 +45,7 @@ export const demoCarts: GolfCart[] = [
     range: "35 miles",
     powerType: "electric",
     images: [
-      "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=600&fit=crop",
+      "/images/carts/golfcart-white-luxury.jpg",
     ],
     features: [
       "Street Legal",
@@ -74,7 +74,7 @@ export const demoCarts: GolfCart[] = [
     range: "100+ miles",
     powerType: "gas",
     images: [
-      "https://images.unsplash.com/photo-1591370874773-6702e8f12fd8?w=800&h=600&fit=crop",
+      "/images/carts/golfcart-silver.webp",
     ],
     features: [
       "Fuel Injection",
@@ -102,7 +102,7 @@ export const demoCarts: GolfCart[] = [
     range: "45 miles",
     powerType: "electric",
     images: [
-      "https://images.unsplash.com/photo-1596394723269-e8e795986483?w=800&h=600&fit=crop",
+      "/images/carts/golfcart-green.jpeg",
     ],
     features: [
       "Digital Dash",
@@ -131,7 +131,7 @@ export const demoCarts: GolfCart[] = [
     range: "30 miles",
     powerType: "electric",
     images: [
-      "/images/carts/golf-cart-clubcar.jpg",
+      "/images/carts/golfcart-white-luxury.jpg",
     ],
     features: [
       "Rear Flip Seat",
@@ -159,7 +159,7 @@ export const demoCarts: GolfCart[] = [
     range: "50 miles",
     powerType: "electric",
     images: [
-      "/images/carts/golf-cart-white-6seat.jpg",
+      "/images/carts/golfcart-silver.webp",
     ],
     features: [
       "6 Seats",
@@ -188,7 +188,7 @@ export const demoCarts: GolfCart[] = [
     range: "20 miles",
     powerType: "electric",
     images: [
-      "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&h=600&fit=crop",
+      "/images/carts/golfcart-green.jpeg",
     ],
     features: ["Canopy Top", "Headlights", "Charger Included"],
     location: "Clearwater, FL",
@@ -211,7 +211,7 @@ export const demoCarts: GolfCart[] = [
     range: "55 miles",
     powerType: "electric",
     images: [
-      "https://images.unsplash.com/photo-1632923057155-1be5e3e3ed00?w=800&h=600&fit=crop",
+      "/images/carts/golfcart-orange.webp",
     ],
     features: [
       "Touchscreen Display",

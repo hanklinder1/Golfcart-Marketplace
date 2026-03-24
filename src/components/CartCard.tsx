@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { GolfCart } from "@/lib/types";
-import { MapPin, Zap, Fuel, Users, Heart } from "lucide-react";
+import { MapPin, Zap, Fuel, Users, Heart, Calendar, Gauge } from "lucide-react";
 
 interface CartCardProps {
   cart: GolfCart;
@@ -18,10 +18,19 @@ export default function CartCard({ cart, linkPrefix = "/marketplace" }: CartCard
       ? "Good Condition"
       : "Budget Friendly";
 
+  const badgeColor =
+    cart.condition === "new"
+      ? "bg-teal-600"
+      : cart.condition === "like-new"
+      ? "bg-teal-500"
+      : cart.condition === "good"
+      ? "bg-teal-700"
+      : "bg-gray-700";
+
   return (
     <Link
       href={`${linkPrefix}/${cart.id}`}
-      className="group bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all duration-200 border border-gray-100"
+      className="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 hover:-translate-y-1"
     >
       <div className="aspect-[4/3] relative overflow-hidden bg-gray-100">
         {cart.images[0] ? (
@@ -29,7 +38,7 @@ export default function CartCard({ cart, linkPrefix = "/marketplace" }: CartCard
             src={cart.images[0]}
             alt={cart.title}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="object-cover group-hover:scale-110 transition-transform duration-500"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         ) : (
@@ -37,43 +46,53 @@ export default function CartCard({ cart, linkPrefix = "/marketplace" }: CartCard
             <span className="text-gray-400 text-sm">No Photo</span>
           </div>
         )}
-        {/* Zillow-style badge */}
         <div className="absolute top-3 left-3">
-          <span className="text-xs font-bold px-2.5 py-1 rounded-sm bg-red-500 text-white shadow-sm">
+          <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${badgeColor} text-white shadow-sm`}>
             {badgeLabel}
           </span>
         </div>
-        {/* Heart icon */}
-        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-          <div className="w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white">
-            <Heart size={16} className="text-gray-600" />
+        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+          <div className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white shadow-md hover:scale-110 transition-transform">
+            <Heart size={16} className="text-gray-500 hover:text-red-500 transition-colors" />
           </div>
         </div>
-        {/* Bottom gradient for readability */}
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/30 to-transparent" />
+        <div className="absolute bottom-3 left-3">
+          <span className="text-white font-bold text-xl drop-shadow-lg">
+            ${cart.price.toLocaleString()}
+          </span>
+        </div>
       </div>
       <div className="p-4">
-        <p className="text-gray-900 font-bold text-xl mb-1">
-          ${cart.price.toLocaleString()}
-        </p>
-        <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
-          <span className="flex items-center gap-1">
-            {cart.powerType === "electric" ? <Zap size={14} /> : <Fuel size={14} />}
-            {cart.powerType === "electric" ? "Electric" : "Gas"}
-          </span>
-          <span className="text-gray-300">|</span>
-          <span className="flex items-center gap-1">
-            <Users size={14} />
-            {cart.seats} seats
-          </span>
-          <span className="text-gray-300">|</span>
-          <span>{cart.year}</span>
-        </div>
-        <h3 className="text-gray-700 text-sm font-medium group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
+        <h3 className="text-gray-900 text-sm font-semibold group-hover:text-teal-700 transition-colors line-clamp-1 mb-2">
           {cart.title}
         </h3>
-        <div className="flex items-center gap-1 text-gray-400 text-xs">
-          <MapPin size={12} />
+        <div className="flex items-center gap-3 text-gray-500 text-xs mb-3">
+          <span className="flex items-center gap-1">
+            {cart.powerType === "electric" ? (
+              <Zap size={13} className="text-teal-500" />
+            ) : (
+              <Fuel size={13} className="text-teal-500" />
+            )}
+            {cart.powerType === "electric" ? "Electric" : "Gas"}
+          </span>
+          <span className="flex items-center gap-1">
+            <Users size={13} className="text-teal-500" />
+            {cart.seats} seats
+          </span>
+          <span className="flex items-center gap-1">
+            <Calendar size={13} className="text-teal-500" />
+            {cart.year}
+          </span>
+          {cart.range && (
+            <span className="flex items-center gap-1">
+              <Gauge size={13} className="text-teal-500" />
+              {cart.range}
+            </span>
+          )}
+        </div>
+        <div className="flex items-center gap-1 text-gray-400 text-xs pt-2 border-t border-gray-50">
+          <MapPin size={12} className="text-teal-400" />
           {cart.location}
         </div>
       </div>

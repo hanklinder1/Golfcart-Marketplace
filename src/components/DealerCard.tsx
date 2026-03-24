@@ -8,29 +8,29 @@ interface DealerCardProps {
 
 export default function DealerCard({ dealer }: DealerCardProps) {
   return (
-    <div className="bg-white rounded-xl border border-sage-100 overflow-hidden hover:shadow-lg hover:border-sage-200 transition-all duration-200">
-      <div className="aspect-[16/9] bg-sage-100 relative overflow-hidden">
-        <div className="w-full h-full bg-gradient-to-br from-sage-100 to-sage-200 flex items-center justify-center">
-          <span className="text-sage-400 text-sm">Dealer Photo</span>
+    <div className="bg-white rounded-xl border border-teal-100 overflow-hidden hover:shadow-lg hover:border-teal-200 transition-all duration-200">
+      <div className="aspect-[16/9] bg-teal-100 relative overflow-hidden">
+        <div className="w-full h-full bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center">
+          <span className="text-teal-400 text-sm">Dealer Photo</span>
         </div>
       </div>
       <div className="p-5">
-        <h3 className="text-sage-800 font-semibold text-lg mb-1">{dealer.name}</h3>
+        <h3 className="text-teal-800 font-semibold text-lg mb-1">{dealer.name}</h3>
         <div className="flex items-center gap-2 mb-3">
           <div className="flex items-center gap-1">
-            <Star size={14} className="text-sand-500 fill-sand-500" />
-            <span className="text-sage-700 text-sm font-medium">{dealer.rating}</span>
+            <Star size={14} className="text-gray-500 fill-gray-500" />
+            <span className="text-teal-700 text-sm font-medium">{dealer.rating}</span>
           </div>
-          <span className="text-sage-400 text-xs">({dealer.reviewCount} reviews)</span>
+          <span className="text-teal-400 text-xs">({dealer.reviewCount} reviews)</span>
         </div>
-        <p className="text-sage-500 text-sm leading-relaxed mb-4 line-clamp-2">
+        <p className="text-teal-500 text-sm leading-relaxed mb-4 line-clamp-2">
           {dealer.description}
         </p>
-        <div className="flex items-center gap-1 text-sage-400 text-xs mb-2">
+        <div className="flex items-center gap-1 text-teal-400 text-xs mb-2">
           <MapPin size={12} />
           {dealer.city}, {dealer.state}
         </div>
-        <div className="flex items-center gap-1 text-sage-400 text-xs mb-4">
+        <div className="flex items-center gap-1 text-teal-400 text-xs mb-4">
           <Phone size={12} />
           {dealer.phone}
         </div>
@@ -38,7 +38,7 @@ export default function DealerCard({ dealer }: DealerCardProps) {
           {dealer.brands.map((brand) => (
             <span
               key={brand}
-              className="text-xs bg-sage-50 text-sage-600 px-2 py-0.5 rounded-full"
+              className="text-xs bg-teal-50 text-teal-600 px-2 py-0.5 rounded-full"
             >
               {brand}
             </span>
@@ -46,7 +46,7 @@ export default function DealerCard({ dealer }: DealerCardProps) {
         </div>
         <a
           href={`mailto:${dealer.email}`}
-          className="block text-center bg-sage-700 text-white text-sm font-medium py-2.5 rounded-lg hover:bg-sage-800 transition-colors"
+          className="block text-center bg-teal-700 text-white text-sm font-medium py-2.5 rounded-xl hover:bg-teal-800 transition-colors"
         >
           Contact Dealer
         </a>
