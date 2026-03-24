@@ -16,6 +16,8 @@ export interface GolfCart {
   location: string;
   sellerId: string;
   sellerName: string;
+  sellerEmail: string;
+  sellerPhone: string;
   createdAt: string;
 }
 
