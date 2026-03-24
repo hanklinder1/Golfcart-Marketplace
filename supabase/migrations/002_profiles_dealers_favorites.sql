@@ -1,3 +1,16 @@
+-- Drop existing policies if they exist (safe to re-run)
+DROP POLICY IF EXISTS "Public can read profiles"        ON profiles;
+DROP POLICY IF EXISTS "Users can update own profile"    ON profiles;
+DROP POLICY IF EXISTS "Users can insert own profile"    ON profiles;
+DROP POLICY IF EXISTS "Public can read dealers"         ON dealers;
+DROP POLICY IF EXISTS "Anyone can create dealer"        ON dealers;
+DROP POLICY IF EXISTS "Owners can update dealer"        ON dealers;
+DROP POLICY IF EXISTS "Users can read own favorites"    ON favorites;
+DROP POLICY IF EXISTS "Users can create favorites"      ON favorites;
+DROP POLICY IF EXISTS "Users can delete own favorites"  ON favorites;
+DROP POLICY IF EXISTS "Sellers can update own listings" ON listings;
+DROP POLICY IF EXISTS "Sellers can delete own listings" ON listings;
+
 -- Profiles table (one per auth user)
 CREATE TABLE IF NOT EXISTS profiles (
   id          UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -34,7 +47,6 @@ BEGIN
   ON CONFLICT (id) DO NOTHING;
   RETURN NEW;
 EXCEPTION WHEN OTHERS THEN
-  -- Never block user creation due to profile errors
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
