@@ -14,8 +14,8 @@ export default function DemoCartDetail({ params }: { params: { id: string } }) {
 
   return (
     <div>
-      <div className="bg-teal-50 border-b border-teal-100 py-2 text-center">
-        <p className="text-teal-700 text-xs font-medium">
+      <div className="bg-teal-50 border-b border-gray-200 py-2 text-center">
+        <p className="text-gray-800 text-xs font-medium">
           You&apos;re viewing the demo — this is a sample listing.{" "}
           <Link href="/marketplace" className="underline">
             Exit demo
@@ -26,7 +26,7 @@ export default function DemoCartDetail({ params }: { params: { id: string } }) {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Link
           href="/demo/marketplace"
-          className="inline-flex items-center gap-1.5 text-teal-500 hover:text-teal-700 text-sm mb-6"
+          className="inline-flex items-center gap-1.5 text-gray-500 hover:text-gray-800 text-sm mb-6"
         >
           <ArrowLeft size={16} />
           Back to Marketplace
@@ -35,7 +35,7 @@ export default function DemoCartDetail({ params }: { params: { id: string } }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Image placeholder */}
           <div className="aspect-[4/3] bg-teal-100 rounded-xl flex items-center justify-center">
-            <span className="text-teal-400 text-sm">Cart Photo</span>
+            <span className="text-gray-400 text-sm">Cart Photo</span>
           </div>
 
           {/* Details */}
@@ -44,9 +44,9 @@ export default function DemoCartDetail({ params }: { params: { id: string } }) {
               <span
                 className={`text-xs font-medium px-2.5 py-1 rounded-full ${
                   cart.condition === "new"
-                    ? "bg-teal-100 text-teal-700"
+                    ? "bg-teal-100 text-gray-800"
                     : cart.condition === "like-new"
-                    ? "bg-teal-100 text-teal-700"
+                    ? "bg-teal-100 text-gray-800"
                     : cart.condition === "good"
                     ? "bg-gray-100 text-gray-700"
                     : "bg-gray-100 text-gray-600"
@@ -57,17 +57,17 @@ export default function DemoCartDetail({ params }: { params: { id: string } }) {
                   : cart.condition.charAt(0).toUpperCase() + cart.condition.slice(1)}
               </span>
             </div>
-            <h1 className="text-2xl font-bold text-teal-800 mb-2">{cart.title}</h1>
-            <p className="text-3xl font-bold text-teal-800 mb-4">
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">{cart.title}</h1>
+            <p className="text-3xl font-bold text-gray-900 mb-4">
               ${cart.price.toLocaleString()}
             </p>
 
-            <div className="flex items-center gap-1.5 text-teal-500 text-sm mb-6">
+            <div className="flex items-center gap-1.5 text-gray-500 text-sm mb-6">
               <MapPin size={14} />
               {cart.location}
             </div>
 
-            <p className="text-teal-600 text-sm leading-relaxed mb-6">
+            <p className="text-gray-700 text-sm leading-relaxed mb-6">
               {cart.description}
             </p>
 
@@ -88,10 +88,10 @@ export default function DemoCartDetail({ params }: { params: { id: string } }) {
                   key={label}
                   className="bg-teal-50 rounded-xl p-3 flex items-center gap-3"
                 >
-                  <Icon size={16} className="text-teal-400" />
+                  <Icon size={16} className="text-gray-400" />
                   <div>
-                    <p className="text-teal-400 text-xs">{label}</p>
-                    <p className="text-teal-700 text-sm font-medium">{value}</p>
+                    <p className="text-gray-400 text-xs">{label}</p>
+                    <p className="text-gray-800 text-sm font-medium">{value}</p>
                   </div>
                 </div>
               ))}
@@ -99,12 +99,12 @@ export default function DemoCartDetail({ params }: { params: { id: string } }) {
 
             {/* Features */}
             <div className="mb-6">
-              <h3 className="text-teal-700 font-semibold text-sm mb-2">Features</h3>
+              <h3 className="text-gray-800 font-semibold text-sm mb-2">Features</h3>
               <div className="flex flex-wrap gap-2">
                 {cart.features.map((f) => (
                   <span
                     key={f}
-                    className="text-xs bg-teal-50 text-teal-600 px-3 py-1 rounded-full"
+                    className="text-xs bg-teal-50 text-gray-700 px-3 py-1 rounded-full"
                   >
                     {f}
                   </span>
@@ -113,16 +113,16 @@ export default function DemoCartDetail({ params }: { params: { id: string } }) {
             </div>
 
             {/* Seller info */}
-            <div className="bg-white border border-teal-100 rounded-xl p-4">
+            <div className="bg-white border border-gray-200 rounded-xl p-4">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
-                  <User size={16} className="text-teal-400" />
+                  <User size={16} className="text-gray-400" />
                 </div>
                 <div>
-                  <p className="text-teal-700 font-medium text-sm">
+                  <p className="text-gray-800 font-medium text-sm">
                     {cart.sellerName}
                   </p>
-                  <p className="text-teal-400 text-xs">Listed {cart.createdAt}</p>
+                  <p className="text-gray-400 text-xs">Listed {cart.createdAt}</p>
                 </div>
               </div>
               <button

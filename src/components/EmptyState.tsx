@@ -18,8 +18,8 @@ export default function EmptyState({
       <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
         <div className="w-8 h-8 bg-teal-200 rounded-full" />
       </div>
-      <h3 className="text-teal-700 font-semibold text-lg mb-2">{title}</h3>
-      <p className="text-teal-400 text-sm max-w-md mx-auto mb-6">{description}</p>
+      <h3 className="text-gray-800 font-semibold text-lg mb-2">{title}</h3>
+      <p className="text-gray-400 text-sm max-w-md mx-auto mb-6">{description}</p>
       {actionLabel && actionHref && (
         <Link
           href={actionHref}

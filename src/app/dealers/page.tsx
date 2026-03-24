@@ -4,8 +4,8 @@ export default function DealersPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-teal-800 mb-1">Dealers</h1>
-        <p className="text-teal-400 text-sm">
+        <h1 className="text-2xl font-bold text-gray-900 mb-1">Dealers</h1>
+        <p className="text-gray-400 text-sm">
           Find authorized golf cart dealers in your area.
         </p>
       </div>
