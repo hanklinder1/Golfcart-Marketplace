@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { User, MapPin, Calendar, Plus, Pencil, Trash2, CheckCircle, Heart, Zap, PartyPopper } from "lucide-react";
@@ -17,7 +17,7 @@ interface Profile {
   created_at: string;
 }
 
-export default function ProfilePage() {
+function ProfileContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const paymentStatus = searchParams.get("payment");
@@ -408,5 +408,13 @@ export default function ProfilePage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense>
+      <ProfileContent />
+    </Suspense>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import CartCard from "@/components/CartCard";
 import { GolfCart } from "@/lib/types";
@@ -16,7 +16,7 @@ const priceRanges = [
   { label: "$20,000+", value: "20000-+" },
 ];
 
-export default function MarketplacePage() {
+function MarketplaceContent() {
   const searchParams = useSearchParams();
   const [listings, setListings] = useState<GolfCart[]>([]);
   const [loading, setLoading] = useState(true);
@@ -141,5 +141,13 @@ export default function MarketplacePage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function MarketplacePage() {
+  return (
+    <Suspense>
+      <MarketplaceContent />
+    </Suspense>
   );
 }
