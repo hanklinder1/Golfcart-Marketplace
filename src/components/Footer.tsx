@@ -63,6 +63,12 @@ export default function Footer() {
               <Link href="/login" className="text-gray-400 hover:text-teal-400 text-sm transition-colors">
                 Sign In
               </Link>
+              <Link href="/terms" className="text-gray-400 hover:text-teal-400 text-sm transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="/privacy" className="text-gray-400 hover:text-teal-400 text-sm transition-colors">
+                Privacy Policy
+              </Link>
             </div>
           </div>
         </div>
