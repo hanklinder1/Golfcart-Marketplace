@@ -14,27 +14,39 @@ import {
   ArrowRight,
   MapPin,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { demoCarts } from "@/data/demo-carts";
 import CartCard from "@/components/CartCard";
 import ScrollReveal from "@/components/ScrollReveal";
+import type { GolfCart } from "@/lib/types";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
-  const featured = demoCarts.slice(0, 4);
+  const [featured, setFeatured] = useState<GolfCart[]>([]);
+  const [stats, setStats] = useState({ listings: 0, dealers: 0, cities: 0 });
+
+  useEffect(() => {
+    fetch("/api/listings")
+      .then((r) => r.json())
+      .then((d) => setFeatured((d.listings ?? []).slice(0, 4)));
+
+    fetch("/api/stats")
+      .then((r) => r.json())
+      .then((d) => setStats(d));
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push(`/demo/marketplace`);
+    const params = searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : "";
+    router.push(`/marketplace${params}`);
   };
 
-  const stats = [
-    { value: "2,500+", label: "Active Listings", icon: TrendingUp },
+  const statItems = [
+    { value: stats.listings > 0 ? `${stats.listings}` : "—", label: "Active Listings", icon: TrendingUp },
     { value: "98%", label: "Satisfaction Rate", icon: Star },
-    { value: "150+", label: "Verified Dealers", icon: BadgeCheck },
-    { value: "50+", label: "Florida Cities", icon: MapPin },
+    { value: stats.dealers > 0 ? `${stats.dealers}` : "—", label: "Verified Dealers", icon: BadgeCheck },
+    { value: stats.cities > 0 ? `${stats.cities}` : "—", label: "Florida Cities", icon: MapPin },
   ];
 
   return (
@@ -87,9 +99,9 @@ export default function Home() {
 
           <div className="mt-5 flex items-center justify-center gap-4 text-white/60 text-sm">
             <span>Popular:</span>
-            <Link href="/demo/marketplace" className="hover:text-teal-400 transition-colors underline underline-offset-2">Club Car</Link>
-            <Link href="/demo/marketplace" className="hover:text-teal-400 transition-colors underline underline-offset-2">EZGO</Link>
-            <Link href="/demo/marketplace" className="hover:text-teal-400 transition-colors underline underline-offset-2">Yamaha</Link>
+            <Link href="/marketplace?make=Club+Car" className="hover:text-teal-400 transition-colors underline underline-offset-2">Club Car</Link>
+            <Link href="/marketplace?make=EZGO" className="hover:text-teal-400 transition-colors underline underline-offset-2">EZGO</Link>
+            <Link href="/marketplace?make=Yamaha" className="hover:text-teal-400 transition-colors underline underline-offset-2">Yamaha</Link>
           </div>
         </div>
       </section>
@@ -99,7 +111,7 @@ export default function Home() {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-8">
-              {stats.map((stat) => (
+              {statItems.map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="inline-flex items-center justify-center w-10 h-10 bg-teal-50 rounded-xl mb-2">
                     <stat.icon size={20} className="text-teal-600" />
@@ -121,11 +133,11 @@ export default function Home() {
               <div>
                 <span className="text-gray-500 text-xs font-bold uppercase tracking-wider">Browse</span>
                 <h2 className="text-2xl font-extrabold text-gray-900 mt-1">
-                  Featured Listings
+                  {featured.length > 0 ? "Latest Listings" : "Listings"}
                 </h2>
               </div>
               <Link
-                href="/demo/marketplace"
+                href="/marketplace"
                 className="flex items-center gap-1 text-teal-600 hover:text-teal-700 text-sm font-bold group"
               >
                 View all
@@ -133,13 +145,29 @@ export default function Home() {
               </Link>
             </div>
           </ScrollReveal>
-          <ScrollReveal stagger>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {featured.map((cart) => (
-                <CartCard key={cart.id} cart={cart} linkPrefix="/demo" />
-              ))}
-            </div>
-          </ScrollReveal>
+
+          {featured.length === 0 ? (
+            <ScrollReveal>
+              <div className="text-center py-16 bg-white rounded-2xl border border-gray-100">
+                <p className="text-gray-400 text-sm mb-4">No listings yet — be the first to sell a cart.</p>
+                <Link
+                  href="/sell"
+                  className="inline-flex items-center gap-2 bg-teal-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-teal-700 transition-colors"
+                >
+                  List Your Cart
+                  <ChevronRight size={16} />
+                </Link>
+              </div>
+            </ScrollReveal>
+          ) : (
+            <ScrollReveal stagger>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {featured.map((cart) => (
+                  <CartCard key={cart.id} cart={cart} />
+                ))}
+              </div>
+            </ScrollReveal>
+          )}
         </div>
       </section>
 
