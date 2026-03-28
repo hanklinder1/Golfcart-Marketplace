@@ -19,6 +19,7 @@ export interface GolfCart {
   sellerEmail: string;
   sellerPhone: string;
   createdAt: string;
+  isFeatured?: boolean;
 }
 
 export interface Dealer {

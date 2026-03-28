@@ -25,6 +25,7 @@ function toGolfCart(row: Record<string, unknown>): GolfCart {
     sellerEmail: row.seller_email as string,
     sellerPhone: (row.seller_phone as string) ?? "",
     createdAt: row.created_at as string,
+    isFeatured: (row.is_featured as boolean) ?? false,
   };
 }
 
@@ -39,6 +40,7 @@ export async function GET(req: NextRequest) {
     .from("listings")
     .select("*")
     .eq("status", "active")
+    .order("is_featured", { ascending: false })
     .order("created_at", { ascending: false });
 
   if (make) query = query.ilike("make", make);

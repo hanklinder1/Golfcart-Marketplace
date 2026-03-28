@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { GolfCart } from "@/lib/types";
-import { MapPin, Zap, Fuel, Users, Calendar, Gauge } from "lucide-react";
+import { MapPin, Zap, Fuel, Users, Calendar, Gauge, Star } from "lucide-react";
 import FavoriteButton from "@/components/FavoriteButton";
 
 interface CartCardProps {
@@ -47,7 +47,13 @@ export default function CartCard({ cart, linkPrefix = "/marketplace" }: CartCard
             <span className="text-gray-400 text-sm">No Photo</span>
           </div>
         )}
-        <div className="absolute top-3 left-3">
+        <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+          {cart.isFeatured && (
+            <span className="flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-amber-400 text-amber-900 shadow-sm">
+              <Star size={10} fill="currentColor" />
+              Featured
+            </span>
+          )}
           <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${badgeColor} text-white shadow-sm`}>
             {badgeLabel}
           </span>
