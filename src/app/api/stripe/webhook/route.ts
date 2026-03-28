@@ -2,9 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { getAdmin } from "@/lib/supabase/admin";
 
-// Required: tell Next.js not to parse the body — Stripe needs the raw bytes
-export const config = { api: { bodyParser: false } };
-
 function tierFromPriceId(priceId: string): string {
   const map: Record<string, string> = {
     [process.env.STRIPE_PRICE_STANDARD ?? ""]: "standard",
