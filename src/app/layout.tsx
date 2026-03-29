@@ -9,24 +9,24 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Carteroo — Buy & Sell Golf Carts in Florida",
+    default: "Carteroo — Buy & Sell Golf Carts Across the USA",
     template: "%s | Carteroo",
   },
   description:
-    "Florida's #1 golf cart marketplace. Browse thousands of listings from private sellers and verified dealers. Find electric and gas golf carts near you.",
-  keywords: ["golf cart", "golf cart for sale", "buy golf cart", "sell golf cart", "Florida golf cart", "used golf cart", "electric golf cart"],
+    "America's #1 golf cart marketplace. Browse thousands of listings from private sellers and verified dealers. Find electric and gas golf carts near you.",
+  keywords: ["golf cart", "golf cart for sale", "buy golf cart", "sell golf cart", "used golf cart", "electric golf cart", "golf cart marketplace", "golf cart dealer"],
   metadataBase: new URL("https://carteroo.com"),
   openGraph: {
     type: "website",
     siteName: "Carteroo",
-    title: "Carteroo — Buy & Sell Golf Carts in Florida",
-    description: "Florida's #1 golf cart marketplace. Browse listings from private sellers and verified dealers.",
+    title: "Carteroo — Buy & Sell Golf Carts Across the USA",
+    description: "America's #1 golf cart marketplace. Browse listings from private sellers and verified dealers.",
     url: "https://carteroo.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Carteroo — Buy & Sell Golf Carts in Florida",
-    description: "Florida's #1 golf cart marketplace. Browse listings from private sellers and verified dealers.",
+    title: "Carteroo — Buy & Sell Golf Carts Across the USA",
+    description: "America's #1 golf cart marketplace. Browse listings from private sellers and verified dealers.",
   },
   robots: {
     index: true,

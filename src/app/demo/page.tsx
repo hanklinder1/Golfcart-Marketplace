@@ -44,7 +44,7 @@ export default function DemoHome() {
     { value: "2,500+", label: "Active Listings", icon: TrendingUp },
     { value: "98%", label: "Satisfaction Rate", icon: Star },
     { value: "150+", label: "Verified Dealers", icon: BadgeCheck },
-    { value: "50+", label: "Florida Cities", icon: MapPin },
+    { value: "50+", label: "Cities Nationwide", icon: MapPin },
   ];
 
   return (
@@ -79,7 +79,7 @@ export default function DemoHome() {
             <span className="text-teal-400">Golf Cart</span>
           </h1>
           <p className="text-white/70 text-lg mb-8 max-w-xl mx-auto">
-            Buy and sell golf carts from trusted sellers and dealers across Florida
+            Buy and sell golf carts from trusted sellers and dealers across the USA
           </p>
 
           <form onSubmit={handleSearch} className="max-w-xl mx-auto">
@@ -137,7 +137,7 @@ export default function DemoHome() {
                 <TrendingUp size={16} className="text-teal-600" />
                 <span className="text-gray-500 text-xs font-bold uppercase tracking-wider">Trending</span>
               </div>
-              <h2 className="text-xl font-extrabold text-gray-900">Trending Carts in Florida</h2>
+              <h2 className="text-xl font-extrabold text-gray-900">Trending Carts Nationwide</h2>
               <p className="text-gray-500 text-sm">Most viewed listings over the past 24 hours</p>
             </div>
             <div className="hidden sm:flex items-center gap-2">
@@ -247,7 +247,7 @@ export default function DemoHome() {
             <div className="bg-gradient-to-br from-gray-50 to-teal-50 rounded-3xl p-10 sm:p-14 text-center border border-teal-100">
               <h2 className="text-3xl font-extrabold text-gray-900 mb-3">Ready to list your cart?</h2>
               <p className="text-gray-500 text-base mb-8 max-w-lg mx-auto">
-                Create a free account and post your listing in minutes. Reach thousands of potential buyers across Florida.
+                Create a free account and post your listing in minutes. Reach thousands of potential buyers across the USA.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link href="/demo/sell" className="inline-flex items-center gap-2 bg-teal-600 text-white font-bold px-8 py-3.5 rounded-xl hover:bg-teal-700 transition-all hover:shadow-lg hover:shadow-teal-600/20">

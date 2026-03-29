@@ -46,7 +46,7 @@ export default function Home() {
     { value: stats.listings > 0 ? `${stats.listings}` : "—", label: "Active Listings", icon: TrendingUp },
     { value: "98%", label: "Satisfaction Rate", icon: Star },
     { value: stats.dealers > 0 ? `${stats.dealers}` : "—", label: "Verified Dealers", icon: BadgeCheck },
-    { value: stats.cities > 0 ? `${stats.cities}` : "—", label: "Florida Cities", icon: MapPin },
+    { value: stats.cities > 0 ? `${stats.cities}` : "—", label: "Cities Nationwide", icon: MapPin },
   ];
 
   return (
@@ -65,7 +65,7 @@ export default function Home() {
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-teal-600/20 backdrop-blur-sm border border-teal-400/30 text-teal-200 text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
             <Zap size={14} />
-            Florida&apos;s #1 Golf Cart Marketplace — Carteroo
+            America&apos;s #1 Golf Cart Marketplace — Carteroo
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-3 tracking-tight leading-tight">
             Find Your Perfect
@@ -73,7 +73,7 @@ export default function Home() {
             <span className="text-teal-400">Golf Cart</span>
           </h1>
           <p className="text-white/70 text-lg mb-8 max-w-xl mx-auto">
-            Buy and sell golf carts from trusted sellers and dealers across Florida
+            Buy and sell golf carts from trusted sellers and dealers across the USA
           </p>
 
           <form onSubmit={handleSearch} className="max-w-xl mx-auto">
@@ -267,7 +267,7 @@ export default function Home() {
               </h2>
               <p className="text-gray-500 text-base mb-8 max-w-lg mx-auto">
                 Create a free account and post your listing in minutes. Reach thousands
-                of potential buyers across Florida.
+                of potential buyers across the USA.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link

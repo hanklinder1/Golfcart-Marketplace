@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn about Carteroo — Florida's easiest way to buy and sell golf carts.",
+  description: "Learn about Carteroo — the easiest way to buy and sell golf carts across the USA.",
 };
 
 export default function AboutPage() {

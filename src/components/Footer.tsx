@@ -28,7 +28,7 @@ export default function Footer() {
               </span>
               <span className="flex items-center gap-2">
                 <MapPin size={13} className="text-teal-500" />
-                Florida, USA
+                United States
               </span>
             </div>
           </div>

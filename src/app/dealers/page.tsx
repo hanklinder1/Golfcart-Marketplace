@@ -21,7 +21,7 @@ export default function DealersPage() {
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900 mb-1">Dealers</h1>
         <p className="text-gray-400 text-sm">
-          {loading ? "Loading..." : `${dealers.length} authorized dealer${dealers.length !== 1 ? "s" : ""} in Florida`}
+          {loading ? "Loading..." : `${dealers.length} authorized dealer${dealers.length !== 1 ? "s" : ""} nationwide`}
         </p>
       </div>
 

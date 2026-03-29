@@ -18,7 +18,7 @@ export default function RegisterPage() {
     "Wisconsin","Wyoming",
   ];
 
-  const [form, setForm] = useState({ name: "", email: "", password: "", location: "Florida" });
+  const [form, setForm] = useState({ name: "", email: "", password: "", location: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
